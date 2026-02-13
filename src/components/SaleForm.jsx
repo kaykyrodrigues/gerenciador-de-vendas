@@ -21,8 +21,7 @@ export default function SaleForm() {
       });
 
       console.log("Venda criada com sucesso", response.data);
-      alert("Venda criada com sucesso");
-      navigate("/");
+      navigate("/createdsale");
     } catch (error) {
       console.error(error);
     }
@@ -30,9 +29,6 @@ export default function SaleForm() {
 
   return (
     <section>
-      <h1 className="m-1 text-center text-neutral-600 text-xl font-bold">
-        Registro de Venda
-      </h1>
       <form
         className="m-auto p-2 max-w-72 bg-slate-200 rounded-md"
         onSubmit={handleSubmit(onSubmit)}

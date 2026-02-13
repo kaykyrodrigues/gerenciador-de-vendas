@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import SalesPage from "./pages/SalesPage.jsx";
-import CriarVenda from "./pages/CreateSale.jsx"
+import CriarVenda from "./pages/CreateSale.jsx";
+import CreatedSale from "./pages/CreatedSale.jsx";
 
 export default function AppRoutes() {
   return (
@@ -9,6 +10,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/sales" element={<SalesPage />} />
       <Route path="/createsale" element={<CriarVenda />} />
+      <Route path="/createdsale" element={<CreatedSale />} />
     </Routes>
   );
 }
