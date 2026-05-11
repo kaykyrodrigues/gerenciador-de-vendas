@@ -10,7 +10,8 @@ export default function Recents() {
     async function loadSales() {
       try {
         const data = await getSales();
-        setSales(data);
+
+        setSales(Array.isArray(data.data) ? data.data : []);
       } catch (err) {
         setError("Erro ao carregar venda");
         console.error(err);
@@ -22,25 +23,15 @@ export default function Recents() {
 
   if (error) return <p>{error}</p>;
 
-  const reverseSales = sales.reverse();
-  const recentSales = [];
-
-  let cont = 0;
-
-  for (let i = reverseSales.length - 1; i >= 0; i--) {
-    cont = cont + 1;
-
-    recentSales.push(reverseSales[i]);
-    if (cont == 3) {
-      break;
-    }
-  }
+  const reverseSales = [...sales].reverse();
+  const recentSales = reverseSales.slice(0, 3);
 
   return (
     <section>
       <h1 className="text-neutral-600 text-start m-3 indent-1 font-semibold">
         Vendas Recentes
       </h1>
+
       {recentSales.map((sale) => (
         <div
           key={sale.id}
@@ -52,15 +43,18 @@ export default function Recents() {
               alt="Sale icon"
               className="bg-emerald-600 w-9 h-9 p-1 rounded-md"
             />
+
             <div className="text-sm text-left ml-1">
               <p>{sale.quantity} produtos</p>
+
               <p className="text-neutral-600 text-sm ">
                 {sale.sale_date.split("T")[0]}
               </p>
             </div>
           </div>
+
           <p className="text-emerald-600 text-right font-medium">
-            ${sale.total_amount}
+            R$ {sale.total_amount}
           </p>
         </div>
       ))}

@@ -10,7 +10,7 @@ export default function Status() {
     async function loadReports() {
       try {
         const data = await getReports();
-        setReport(data);
+        setReport(data.data);
         console.log(data);
       } catch (err) {
         setError("Erro ao carregar relatórios");

@@ -1,16 +1,59 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import SalesPage from "./pages/SalesPage.jsx";
-import CriarVenda from "./pages/CreateSale.jsx";
-import CreatedSale from "./pages/CreatedSale.jsx";
+import PrivateRoute from "./components/PrivateRoute";
+
+import Home from "./pages/Home";
+import SalesPage from "./pages/SalesPage";
+import DashboardPage from "./pages/DashboardPage";
+import CreateSale from "./pages/CreateSale";
+
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/sales" element={<SalesPage />} />
-      <Route path="/createsale" element={<CriarVenda />} />
-      <Route path="/createdsale" element={<CreatedSale />} />
+      {/* ROTAS PÚBLICAS */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+      {/* ROTAS PRIVADAS */}
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/sales"
+        element={
+          <PrivateRoute>
+            <SalesPage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/createsale"
+        element={
+          <PrivateRoute>
+            <CreateSale />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/reports"
+        element={
+          <PrivateRoute>
+            <DashboardPage />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }

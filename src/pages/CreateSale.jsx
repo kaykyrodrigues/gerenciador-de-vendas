@@ -4,15 +4,16 @@ import SaleForm from "../components/SaleForm";
 
 export default function CreateSale() {
   return (
-    <>
-      <AltHeader
-        title={
-          <h1 className="text-neutral-600 text-base font-bold">
-            Registro de Venda
-          </h1>
-        }
-      />
-      <SaleForm />
-    </>
+      <section className="bg-emerald-600 h-screen">
+        <AltHeader
+          title={
+            <h1 className="text-white text-base font-semibold">
+              Registro de Venda
+            </h1>
+          }
+        />
+        <SaleForm />
+        <Footer />
+      </section>
   );
 }

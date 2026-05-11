@@ -3,7 +3,7 @@ import back from "../assets/back.png";
 
 export default function AltHeader({ title }) {
   return (
-    <header className="h-14 flex justify-around items-center">
+    <header className="h-14 flex justify-evenly items-center">
       <Link to="/">
           <img
             src={back}
@@ -12,6 +12,7 @@ export default function AltHeader({ title }) {
           />
       </Link>
       {title}
+      <div></div>
     </header>
   );
 }
