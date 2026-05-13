@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import api from "../services/Api";
+import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 export default function SaleForm() {
