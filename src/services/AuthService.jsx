@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const API_URL = "http://localhost:3036/auth";
 
 export async function register(data) {
@@ -11,13 +13,13 @@ export async function register(data) {
 }
 
 export async function login(data) {
-  const res = await fetch(`${API_URL}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+  const response = await axios.post(`${API_URL}/login`, data, {
+    withCredentials: true,
   });
 
-  return res.json();
+  console.log(response.data);
+
+  return response.data;
 }
 
 export async function verifyEmail(token) {

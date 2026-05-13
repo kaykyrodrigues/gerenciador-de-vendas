@@ -11,21 +11,40 @@ export default function LoginPage() {
   async function handleLogin(e) {
     e.preventDefault();
 
-    
-    const res = await login({
-      email,
-      userpassword,
-    });
-    
-    console.log(res);
-    if (res.token) {
-      localStorage.setItem("token", res.token);
+    try {
+      const res = await login({
+        email,
+        userpassword,
+      });
 
-      console.log(localStorage.getItem("token"))
+      const data = res?.data ?? res;
+
+      const token = data?.token;
+      const user = data?.user;
+
+      if (!token) {
+        alert("Login falhou: token não encontrado");
+        return;
+      }
+
+      localStorage.setItem("token", token);
+
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            email,
+            name: email.split("@")[0],
+          }),
+        );
+      }
 
       navigate("/");
-    } else {
-      alert(res.error);
+    } catch (err) {
+      console.log(err);
+      alert("Erro no login");
     }
   }
 
@@ -68,10 +87,7 @@ export default function LoginPage() {
 
         <p className="text-sm text-center mt-4 text-slate-600">
           Não tem conta?{" "}
-          <Link
-            to="/register"
-            className="text-emerald-600 font-semibold"
-          >
+          <Link to="/register" className="text-emerald-600 font-semibold">
             Criar conta
           </Link>
         </p>

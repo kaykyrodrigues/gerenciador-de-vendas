@@ -6,13 +6,21 @@ import chart from "../assets/chart.png";
 import Status from "../components/Status";
 import Recents from "../components/Recents";
 import { Link } from "react-router-dom";
+import { getUser } from "../utils/auth";
 
 export default function Home() {
+  const user = getUser();
 
   return (
     <section className="bg-slate-300 w-12/12 min-h-screen text-center">
       <span>
-        <Header msg={<p className="text-white font-semibold">Olá, User!</p>}/>
+        <Header
+          msg={
+            <p className="text-white font-semibold">
+              Olá, {user?.username?.split(" ")[0] || "Usuário"}!
+            </p>
+          }
+        />
       </span>
       <Status />
       <p className="text-neutral-600 m-2 text-base font-medium">
@@ -23,21 +31,17 @@ export default function Home() {
           <Card src={add} alt="Icone de criação de venda" text="Criar Venda" />
         </Link>
         <Link to="/sales">
-          <Card
-            src={cash}
-            alt="Icone de criação de venda"
-            text="Ver Vendas"
-          />
+          <Card src={cash} alt="Icone de criação de venda" text="Ver Vendas" />
         </Link>
-        <Link to="/sales">
+        <Link to="/reports">
           <Card
             src={chart}
-            alt="Icone de criação de venda"
+            alt="Icone de relatórios"
             text="Ver Relatórios"
           />
         </Link>
       </div>
-            <Recents />
+      <Recents />
     </section>
   );
 }

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import SalesPage from "./pages/SalesPage";
 import DashboardPage from "./pages/DashboardPage";
 import CreateSale from "./pages/CreateSale";
+import CreatedSale from "./pages/CreatedSale";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -42,6 +43,15 @@ export default function AppRoutes() {
         element={
           <PrivateRoute>
             <CreateSale />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/createdsale"
+        element={
+          <PrivateRoute>
+            <CreatedSale />
           </PrivateRoute>
         }
       />
