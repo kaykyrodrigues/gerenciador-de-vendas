@@ -8,7 +8,7 @@ import {
 } from "recharts";
 
 import { useEffect, useState } from "react";
-import api from "../services/api";
+import api from "../services/api.jsx";
 
 export default function RevenueChart() {
   const [chartData, setChartData] = useState([]);
