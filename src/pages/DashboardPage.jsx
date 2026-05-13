@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AltHeader from "../components/AltHeader";
 import Footer from "../components/Footer";
-import api from "../services/api.jsx";
+import api from "../services/api";
 import RevenueChart from "../components/RevenueChart";
 import PaymentChart from "../components/PaymentChart";
 

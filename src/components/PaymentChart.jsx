@@ -8,7 +8,7 @@ import {
 } from "recharts";
 
 import { useEffect, useState } from "react";
-import api from "../services/api.jsx";
+import api from "../services/api";
 
 const COLORS = [
   "#22c55e", // PIX → verde
