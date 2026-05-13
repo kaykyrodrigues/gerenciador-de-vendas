@@ -1,48 +1,35 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:3036/auth";
+import api from "./api";
 
 export async function register(data) {
-  const res = await fetch(`${API_URL}/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+  const response = await api.post("/auth/register", data);
 
-  return res.json();
+  return response.data;
 }
 
 export async function login(data) {
-  const response = await axios.post(`${API_URL}/login`, data, {
+  const response = await api.post("/auth/login", data, {
     withCredentials: true,
   });
-
-  console.log(response.data);
 
   return response.data;
 }
 
 export async function verifyEmail(token) {
-  const res = await fetch(`${API_URL}/verify?token=${token}`);
-  return res.json();
+  const response = await api.get(`/auth/verify?token=${token}`);
+
+  return response.data;
 }
 
 export async function forgotPassword(email) {
-  const res = await fetch(`${API_URL}/forgot-password`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
+  const response = await api.post("/auth/forgot-password", {
+    email,
   });
 
-  return res.json();
+  return response.data;
 }
 
 export async function resetPassword(data) {
-  const res = await fetch(`${API_URL}/reset-password`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+  const response = await api.post("/auth/reset-password", data);
 
-  return res.json();
+  return response.data;
 }
